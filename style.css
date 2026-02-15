@@ -19,11 +19,11 @@
   --container:1120px;
   --px:24px;
 
-  /* ✅ Noto Sans Armenian retiré : même rendu pour FR/HY */
-
---font-body: "Noto Sans Armenian", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
---font-serif: "Noto Serif Armenian", serif;
---font-script: "Great Vibes", cursive;
+  /* Polices */
+  --font-body: "Noto Sans Armenian", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  --font-serif: "Noto Serif Armenian", serif;
+  --font-script: "Great Vibes", cursive;
+}
 
 *{ box-sizing:border-box; }
 html{ scroll-behavior:smooth; }
@@ -116,6 +116,10 @@ a{ color:inherit; text-decoration:none; }
   padding:8px 10px;
   border-radius:10px;
 }
+.lang__btn.is-active{
+  color:var(--emerald-900);
+  background:rgba(230,211,163,.25);
+}
 .lang--header{
   background:rgba(250,248,243,.7);
   border:1px solid rgba(231,236,233,.9);
@@ -192,24 +196,31 @@ a{ color:inherit; text-decoration:none; }
   position:absolute;
   inset:0;
 }
-
-/* HERO BG : cadrage gauche + descendu */
 .hero__bg img{
-  object-fit: cover;
-  object-position: 30% 85%; /* X=30% => gauche | Y=78% => descend */
-  opacity: .78;             /* un peu plus visible */
+  width:100%;
+  height:100%;
+  object-fit:cover;
+
+  /* ✅ Déplacer à gauche + descendre pour voir les têtes */
+  object-position: 32% 72%;
+
+  /* ✅ Moins opaque (photo plus visible) */
+  opacity:.92;
+
   transform:scale(1.03);
 }
+
+/* ✅ Overlay plus léger (laisse respirer la photo) */
 .hero::after{
   content:"";
   position:absolute;
   inset:0;
   background:
-    radial-gradient(900px 500px at 25% 40%, rgba(15,61,46,.40), transparent 60%),
-    linear-gradient(90deg, rgba(15,61,46,.78) 0%, rgba(15,61,46,.55) 55%, rgba(15,61,46,.40) 100%);
+    radial-gradient(900px 500px at 30% 40%, rgba(15,61,46,.24), transparent 60%),
+    linear-gradient(90deg, rgba(15,61,46,.52) 0%, rgba(15,61,46,.34) 55%, rgba(15,61,46,.18) 100%);
 }
 
-/* Layout 2 colonnes (gauche vide, droite carte) */
+/* Layout 2 colonnes */
 .hero__layout{
   position:relative;
   z-index:2;
@@ -220,7 +231,7 @@ a{ color:inherit; text-decoration:none; }
   padding:86px 0;
 }
 
-/* ✅ Colonne gauche vide : on garde juste la hauteur pour équilibrer le layout */
+/* Colonne gauche vide */
 .hero__spacer{
   height:520px;
 }
@@ -228,78 +239,72 @@ a{ color:inherit; text-decoration:none; }
 /* Carte droite */
 .hero__card--right{
   position:relative;
-  background:rgba(250,248,243,.92);
-  border:1px solid rgba(230,211,163,.55);
+  justify-self:end;
+  align-self:center;
+
+  background:rgba(250,248,243,.94);
+  border:1px solid rgba(230,211,163,.60);
   border-radius:22px;
-  box-shadow:0 25px 60px rgba(0,0,0,.25);
+  box-shadow:0 25px 60px rgba(0,0,0,.22);
   padding:38px 26px;
   backdrop-filter: blur(8px);
+
+  overflow: visible; /* ✅ indispensable pour voir les fleurs qui dépassent */
 }
-.hero__card--right{
-  justify-self: end;  /* ✅ colle à droite */
-  align-self: center;
-}
-/* ✅ Fleurs SVG renoncule */
+
+/* ✅ Fleurs SVG (style “bouquet” comme ton image) */
 .floral-svg{
   position:absolute;
-  width:160px;
-  height:160px;
+  width:190px;
+  height:190px;
   pointer-events:none;
   user-select:none;
-  filter: drop-shadow(0 18px 40px rgba(0,0,0,.15));
+  z-index:0; /* derrière le texte */
+  opacity:.98;
+  filter:
+    drop-shadow(0 20px 45px rgba(0,0,0,.18))
+    saturate(1.03);
 }
-.floral-top{ top:-50px; right:-50px; }
-.floral-bottom{ bottom:-50px; left:-50px; }
+.floral-top{ top:-62px; right:-62px; }
+.floral-bottom{ bottom:-62px; left:-62px; transform: rotate(180deg); }
 
-/* Responsive */
-@media (max-width: 980px){
-  .hero__layout{
-    grid-template-columns:1fr;
-    padding:70px 0;
-  }
-
-@media (max-width: 980px){
-  .hero::after{
-    background:
-      radial-gradient(900px 500px at 25% 40%, rgba(15,61,46,.28), transparent 60%),
-      linear-gradient(90deg, rgba(15,61,46,.62) 0%, rgba(15,61,46,.45) 55%, rgba(15,61,46,.28) 100%);
-  }
-  .hero__spacer{ display:none; }     /* ✅ on laisse tout voir, carte prend la place */
-  .hero__card--right{ margin-top:6px; }
-  .floral-svg{ width:120px; height:120px; }
+/* ✅ le contenu de la carte passe au-dessus des fleurs */
+.hero__card--right > :not(.floral-svg){
+  position:relative;
+  z-index:1;
 }
-/* Typo mariage : titres + prénoms */
+
+/* ✅ Typo “mariage” comme ton exemple */
 .hero__kicker{
   font-family: var(--font-serif);
-  font-size: 14px;
-  letter-spacing: .14em;
+  font-size: 13px;
+  letter-spacing: .16em;
   text-transform: uppercase;
-  color: rgba(18,32,24,.72);
+  color: rgba(18,32,24,.58);
 }
 
 .hero__names{
   font-family: var(--font-script);
-  font-size: 72px;
-  line-height: 1.0;
-  letter-spacing: .5px;
-  color: var(--emerald-900);
-  text-shadow: 0 10px 28px rgba(15,61,46,.18);
+  font-size: 84px;
+  font-weight: 400;
+  line-height: 1.02;
+  letter-spacing: .3px;
+  color: #2c3b33;
+  text-shadow: 0 12px 30px rgba(0,0,0,.14);
+  margin: 8px 0 10px;
 }
 
 .hero__meta{
   font-family: var(--font-serif);
   font-size: 18px;
-  color: rgba(18,32,24,.70);
+  color: rgba(18,32,24,.66);
 }
 
-/* Titres de sections plus “wedding” */
-.section-title{
-  font-family: var(--font-serif);
-  font-weight: 600;
-  letter-spacing: .02em;
-}
-.section-subtitle{
-  font-family: var(--font-serif);
+.hero__actions{
+  margin-top:18px;
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
 }
 
 /* Buttons */
@@ -403,6 +408,7 @@ a{ color:inherit; text-decoration:none; }
   text-align:center;
   color:var(--text-600);
   font-style:italic;
+  font-family: var(--font-serif);
 }
 
 /* Cards */
@@ -665,12 +671,39 @@ a{ color:inherit; text-decoration:none; }
   .nav__link:hover{ background:rgba(238,246,242,.7); }
   .nav__link::after{ display:none; }
 
-  .hero__card{ padding:26px 16px; }
-  .hero__names{ font-size:44px; }
-  .hero__kicker{ font-size:26px; }
+  /* ✅ Mobile: on garde de la photo visible au dessus de la carte */
+  .hero__layout{
+    grid-template-columns:1fr;
+    padding:70px 0;
+  }
+  .hero__spacer{
+    height:260px; /* zone photo visible */
+  }
+
+  .hero__bg img{
+    object-position: 35% 62%;
+    opacity:.95;
+  }
+
+  /* overlay encore plus léger sur mobile */
+  .hero::after{
+    background:
+      radial-gradient(900px 500px at 30% 40%, rgba(15,61,46,.18), transparent 60%),
+      linear-gradient(90deg, rgba(15,61,46,.40) 0%, rgba(15,61,46,.25) 55%, rgba(15,61,46,.12) 100%);
+  }
+
+  .hero__card--right{
+    justify-self:stretch;
+    margin-top:6px;
+    padding:26px 16px;
+  }
+
+  .hero__names{ font-size:56px; }
+  .hero__kicker{ font-size:12px; }
+
+  .floral-svg{ width:130px; height:130px; }
 
   .countdown{ grid-template-columns:repeat(2, 1fr); }
-
   .timeline{ grid-template-columns:1fr; }
 
   .gallery-bento{
