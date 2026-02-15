@@ -28,7 +28,8 @@
   --font-serif: "Noto Serif", serif;
   --font-body-hy: "Noto Sans Armenian", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
   --font-serif-hy: "Noto Serif Armenian", serif;
-  --font-script: "Great Vibes", cursive;
+ --font-script: "Allura", "Great Vibes", cursive;
+
 
   --ring: 0 0 0 3px rgba(201,162,74,.28);
   --ring2: 0 0 0 3px rgba(15,61,46,.20);
@@ -349,16 +350,68 @@ section[id]{ scroll-margin-top: 90px; }
   margin: 0 0 4px;
 }
 
+/* Noms hero — comme la maquette (1 ligne + soulignement sur le 2e prénom) */
 .hero__names{
-  font-family: var(--font-script);
-  font-size: clamp(56px, 6vw, 92px);
-  font-weight: 400;
-  line-height: 1.02;
-  letter-spacing: .3px;
-  color: #2c3b33;
-  text-shadow: 0 16px 40px rgba(0,0,0,.14);
-  margin: 6px 0 10px;
+  margin: 10px 0 10px;
+  display:flex;
+  align-items: baseline;
+  justify-content:center;
+  gap: 10px;
+  flex-wrap: wrap; /* sécurité mobile */
 }
+
+.hero__name{
+  font-family: var(--font-script);
+  font-weight: 400;
+  font-size: clamp(56px, 6.2vw, 92px);
+  line-height: .95;
+  letter-spacing: .2px;
+  color: rgba(44,59,51,.92);
+  text-shadow: 0 14px 34px rgba(0,0,0,.12);
+  -webkit-font-smoothing: antialiased;
+}
+
+.hero__and{
+  font-family: var(--font-script);
+  font-size: clamp(28px, 3.2vw, 40px);
+  color: rgba(44,59,51,.70);
+  transform: translateY(-2px);
+}
+
+/* Soulignement élégant sous le dernier prénom */
+.hero__name--last{
+  position:relative;
+  display:inline-block;
+  padding-bottom: 10px;
+}
+.hero__name--last::after{
+  content:"";
+  position:absolute;
+  left:-2%;
+  right:-6%;
+  bottom: 2px;
+  height: 2px;
+  border-radius: 999px;
+  background: linear-gradient(90deg,
+    rgba(201,162,74,.20),
+    rgba(201,162,74,.92),
+    rgba(201,162,74,.20)
+  );
+  transform: rotate(-1.2deg);
+  opacity: .95;
+}
+
+/* Arménien : fallback élégant */
+html[lang="hy"] .hero__name,
+html[lang="hy"] .hero__and{
+  font-family: var(--font-serif);
+  text-shadow: 0 12px 28px rgba(0,0,0,.10);
+}
+html[lang="hy"] .hero__name{
+  font-size: clamp(46px, 5vw, 74px);
+  letter-spacing: .1px;
+}
+html[lang="hy"] .hero__name--last::after{ display:none; }
 
 .hero__meta{
   font-family: var(--font-serif);
