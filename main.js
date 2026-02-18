@@ -64,7 +64,7 @@ const i18n = {
 
     rsvp_title: "Formulaire de présence",
     rsvp_subtitle: "Merci de compléter et confirmer votre présence",
-    rsvp_deadline: "Merci de nous confirmer votre présence avant le 15 avril 2026.",
+    rsvp_deadline: "Merci de nous confirmer votre présence avant le 12 avril 2026.",
 
     footer_names: "Lusiné & André",
     footer_meta: "Samedi 9 mai 2026 — Nancy"
@@ -134,7 +134,7 @@ const i18n = {
 
     rsvp_title: "Մասնակցության ձև",
     rsvp_subtitle: "Խնդրում ենք լրացնել և հաստատել Ձեր մասնակցությունը",
-    rsvp_deadline: "Խնդրում ենք հաստատել Ձեր մասնակցությունը մինչև 15 ապրիլ 2026։",
+    rsvp_deadline: "Խնդրում ենք հաստատել Ձեր մասնակցությունը մինչև 12 ապրիլ 2026։",
 
     footer_names: "Անդրե և Լուսինե",
     footer_meta: "9 մայիս 2026 — Նանսի"
