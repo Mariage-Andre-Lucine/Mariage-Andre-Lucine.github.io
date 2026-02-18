@@ -56,13 +56,19 @@ const i18n = {
     btn_map: "Voir sur la carte",
     btn_route: "Itinéraire",
 
+    nav_stays: "Hébergements",
+    stays_title: "Hébergements",
+    stays_subtitle: "Quelques idées d’hébergements près du Château",
+    stays_note: " Chers amis, chers invités 💛 si vous préférez dormir sur place ou tout près, voici quelques options. N’hésitez pas à les contacter directement pour réserver:",
+    stay_call: "Appeler",
+
     rsvp_title: "Formulaire de présence",
     rsvp_subtitle: "Merci de compléter et confirmer votre présence",
     rsvp_deadline: "Merci de nous confirmer votre présence avant le 15 avril 2026.",
 
     footer_names: "Lusiné & André",
     footer_meta: "Samedi 9 mai 2026 — Nancy"
-  },
+    },
 
   hy: {
     meta_title: "Հարսանիք — Անդրե և Լուսինե",
@@ -119,6 +125,12 @@ const i18n = {
 
     btn_map: "Բացել քարտեզը",
     btn_route: "Երթուղի",
+    
+    nav_stays: "Կացարաններ",
+    stays_title: "Կացարաններ",
+    stays_subtitle: "Մի քանի հասցեներ՝ դղյակի մոտակայքում",
+    stays_note: "Սիրելի ընկերներ և հյուրեր 💛 եթե ցանկանում եք մնալ մոտակայքում, ահա մի քանի հասցեներ։ Կարող եք անմիջապես կապ հաստատել և ամրագրել։",
+    stay_call: "Զանգահարել",
 
     rsvp_title: "Մասնակցության ձև",
     rsvp_subtitle: "Խնդրում ենք լրացնել և հաստատել Ձեր մասնակցությունը",
